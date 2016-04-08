@@ -18,7 +18,6 @@ public class SwingPizza {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        System.out.println("benvenuto");
         // TODO code application logic here
         try {
             // Set cross-platform Java L&F (also called "Metal")
@@ -40,5 +39,5 @@ public class SwingPizza {
         Finestra f = new Finestra();
         
     }
-    
+               
 }

@@ -21,6 +21,7 @@ public class Prenotazione extends JButton{
     private int n_persone;
     private JButton bottone;
     private boolean occupato=false;
+    private String[] pizzePossibili;    //per inserire ordine
     
     private ArrayList<String> ordini;
     
@@ -29,18 +30,19 @@ public class Prenotazione extends JButton{
         System.out.println("creo prenotazione");
         this.n_tavolo=n_tavolo;
         ordini = new ArrayList(n_persone);
+        Menu m = new Menu();
+        pizzePossibili=m.prendiArrayNomiPizze();
+        System.out.println("PIZZE POSSIBILI");
+        for(int i=0; i<pizzePossibili.length; i++)
+            System.out.println(pizzePossibili[i]);
+        
+        
     }
     
     public void inserisciOrdine(String pizza){
         ordini.add(pizza);
     }
-    
-    public void riempi(int i){
-        inserisciOrdine(Integer.toString(i));
-        inserisciOrdine("Margherita");
-        inserisciOrdine("Melanzane");
-        occupato=true;
-    }
+
     
     public int getNPersone(){
         return n_persone;
@@ -69,8 +71,11 @@ public class Prenotazione extends JButton{
     
     public void inserisciOrdini(){
         int n = Integer.parseInt(JOptionPane.showInputDialog(this,"Quante persone?"));
-        for(int i=0; i<n; i++)
-            ordini.add(JOptionPane.showInputDialog(this,"Inserisci pizza n."+Integer.toString(i+1)));
+        for(int i=0; i<n; i++){
+            String s=(String)JOptionPane.showInputDialog(this,"Inserisci pizza", "Pizze disponibili", JOptionPane.QUESTION_MESSAGE, null, pizzePossibili, pizzePossibili[0]);
+            ordini.add(s);
+        }
+            
         occupato=true;
     }
     
